@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,700;0,800;1,400;1,700;1,800&display=swap" rel="stylesheet">
+
+  <link href="/styles/output.css" rel="stylesheet">
+  
+  <title>Frontend Mentor | Age calculator app</title>
+
+  <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+  <style>
+    .attribution { font-size: 10px;}
+    .attribution a { color: hsl(228, 45%, 44%); }
+  </style>
+</head>
+<body class="font-[Poppins] bg-gray-100 flex flex-col justify-center h-[100vh] items-center">
+  <div class="sm:w-[36%] w-[70%] bg-white rounded-xl rounded-br-[150px] p-[40px] shadow-lg relative">
+    <form action="/submit" method="POST" class="flex text-[#716f6fa9] text-[10px] tracking-[0.2rem] font-bold gap-5">
+      <label for="date" class="flex flex-col">DAY
+        <select name="date" required>
+          <option value="" disabled <%= !locals.userDate ? 'selected' : '' %>>DD</option>
+          <% for(let date = 1; date <= 31; date++) { %>
+              <option value="<%= date %>" <%= locals.userDate && parseInt(userDate) === date ? 'selected' : '' %>>
+                <%= date %>
+              </option>
+          <% } %>
+        </select>
+      </label>
+      
+      <label for="month" class="flex flex-col">MONTH
+        <select name="month" required>
+          <option value="" disabled <%= !locals.userMonth ? 'selected' : '' %>>MM</option>
+          <% for(let month = 1; month <= 12; month++){ %>
+            <option value="<%= month %>" <%= locals.userMonth && parseInt(userMonth) === month ? 'selected' : '' %>>
+              <%= month %>
+            </option>
+          <% } %>
+        </select>
+      </label>
+
+      <label for="year" class="flex flex-col">YEAR
+        <select name="year" required>
+          <option value="" disabled <%= !locals.userYear ? 'selected' : '' %>>YYYY</option>
+          <% for(let year = 2025; year >= 1955; year--){ %>
+            <option value="<%= year %>" <%= locals.userYear && parseInt(userYear) === year ? 'selected' : '' %>>
+              <%= year %>
+            </option>
+          <% } %>
+        </select>
+      </label>
+      
+    <% if (locals.error) { %>
+        <div class="text-red-500 text-sm mt-2"><%= error %></div>
+    <% } %>
+
+      <button class="sm:w-[70px] sm:h-[70px] w-[60px] h-[60px] rounded-full hover:bg-[#141414] bg-[#854dff] absolute sm:top-[105px] top-[116px] sm:right-4 right-[40%] flex justify-center items-center" type="submit">
+      <img src="assets/images/icon-arrow.png" alt="arrow" class="sm:w-8 w-6">
+      </button>
+    </form>
+  
+    <hr class="border-[#dbdbdb] sm:mt-7 mt-12">
+
+    <div class="text-[#141414] text-[50px]/[1.2] sm:text-[68px]/[1.2] italic font-extrabold sm:mt-5 mt-10">
+      <h1>
+        <% if (locals.userAgeYear) { %>
+          <span><%= userAgeYear %></span>
+        <% }else{ %>
+          <span>--</span> 
+        <% } %>
+        years
+      </h1>
+      <h1>
+        <% if (locals.userAgeMonth) { %>
+          <span><%= userAgeMonth %></span>
+        <% }else{ %>
+          <span>--</span> 
+        <% } %>
+        months
+      </h1>
+      <h1>
+        <% if (locals.userAgeDate) { %>
+          <span><%= userAgeDate %></span>
+        <% }else{ %>
+          <span>--</span> 
+        <% } %>
+        days
+      </h1>
+    </div>
+  </div>
+  
+  <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>.
+  </div> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+  <script src="/js/validate.js"></script>
+</body>
+</html>

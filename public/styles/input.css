@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+span{
+    color: 	#854dff;
+}
+
+select{
+    font-size: 24px;
+    height: fit-content;
+    padding: 8px 15px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    width: 132px;
+    color: #141414;
+    appearance: none;  /* Removes default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    outline: none;
+}
+
+select:focus{
+    border: 1.5px solid #854dff;
+}
+  
+/* Style the placeholder option */
+select option:first-child {
+    color: #716f6fa9;
+}
+  
+/* Style the number options */
+option {
+    color: black;
+}
+
+select:invalid {
+    color: #716f6fa9;
+}
+
+@media (max-width: 600px) {
+    select{
+        width: 90px;
+        font-size: 16px;
+    }
+}
